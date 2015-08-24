@@ -12,7 +12,8 @@ const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
 //Image paths
-const std::string BACKGROUND_IMAGE = "img/background.jpg"; 
+//const std::string BACKGROUND_IMAGE = "img/background.jpg";
+const std::string BACKGROUND_IMAGE = __FILE__;
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
