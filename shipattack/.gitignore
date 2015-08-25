@@ -1,0 +1,6 @@
+shipattack
+*.pdb
+*.ilk
+*.opensdf
+*.sdf
+*.suo
