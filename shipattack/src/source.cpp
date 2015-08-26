@@ -6,6 +6,7 @@ and may not be redistributed without written permission.*/
 #include <SDL_image.h>
 #include <stdio.h>
 #include <string>
+#include "../include/paths.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 800;
@@ -13,7 +14,7 @@ const int SCREEN_HEIGHT = 600;
 
 //Image paths
 //const std::string BACKGROUND_IMAGE = "img/background.jpg";
-const std::string BACKGROUND_IMAGE = __FILE__;
+const std::string BACKGROUND_IMAGE = paths::IMG_BACKGROUND;
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
