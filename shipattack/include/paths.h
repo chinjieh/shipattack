@@ -11,4 +11,5 @@ namespace paths {
 
 	//String paths
 	const std::string IMG_BACKGROUND = path(PATH_IMG).append("background.jpg").string();
+	const std::string IMG_SHIP = path(PATH_IMG).append("ship.jpg").string();
 };

@@ -4,6 +4,9 @@
 #define h_Component
 
 #include "GameObject.h"
+#include <SDL_image.h>
+#include <string>
+#include <exception>
 
 class GameObject;
 
@@ -33,9 +36,18 @@ public:
 */
 class GraphicsComponent : public Component{
 public:
-	GraphicsComponent();
+	GraphicsComponent(SDL_Renderer*, SDL_Texture*);
 	~GraphicsComponent();
 	void update(GameObject*);
+
+	bool loadTexture(std::string path);
+	SDL_Texture* getTexture(void);
+	SDL_Renderer* getRenderer(void);
+	
+private:
+	SDL_Texture* _texture;
+	SDL_Renderer* _renderer;
+
 };
 
 #endif

@@ -1,3 +1,5 @@
+#ifndef h_main
+#define h_main
 /*This source code copyrighted by Lazy Foo' Productions (2004-2015)
 and may not be redistributed without written permission.*/
 
@@ -6,7 +8,9 @@ and may not be redistributed without written permission.*/
 #include <SDL_image.h>
 #include <stdio.h>
 #include <string>
+#include <memory>
 #include "../include/paths.h"
+#include "../include/GameObject.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 800;
@@ -23,6 +27,9 @@ SDL_Texture* gBackgroundTexture = NULL;
 
 //Window renderer
 SDL_Renderer* gRenderer = NULL;
+
+//Vector of items to update
+std::vector<std::shared_ptr<GameObject>> gameobjvector;
 
 bool init();
 void close(); //cleanup garbage
@@ -119,6 +126,18 @@ int main( int argc, char* args[] )
 			printf("Load Media failed!\n");
 		}
 		else {
+
+			//Add stuff to gameobjvector
+			//Create ship GameObject
+			std::shared_ptr<GameObject> shipattack(new GameObject());
+
+			//load ship texture
+			SDL_Texture* shiptexture = loadTexture(paths::IMG_SHIP);
+			//Create new ship GraphicComponent
+			std::shared_ptr<GraphicsComponent> shipgraphiccomp(new GraphicsComponent(gRenderer, shiptexture));
+			shipattack->addComponent(shipgraphiccomp);
+			gameobjvector.push_back(shipattack);
+
 			SDL_Event e;
 			bool quit = false;
 			while (!quit){
@@ -135,6 +154,11 @@ int main( int argc, char* args[] )
 
 					SDL_RenderClear(gRenderer);
 					SDL_RenderCopy(gRenderer, gBackgroundTexture, NULL, NULL);
+					
+					std::vector<std::shared_ptr<GameObject>>::iterator it;
+					for (it = gameobjvector.begin(); it != gameobjvector.end(); it++) {
+						(*it)->update();
+					}
 					SDL_RenderPresent(gRenderer);
 
 
@@ -150,3 +174,5 @@ int main( int argc, char* args[] )
 	close();
 	return 0;
 }
+
+#endif
