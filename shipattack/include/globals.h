@@ -1,3 +1,7 @@
+#ifndef h_globals
+#define h_globals
+
+
 class Vector{
 private:
 	double _x;
@@ -31,3 +35,5 @@ public:
 		_y = y;
 	}
 };
+
+#endif
